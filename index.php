@@ -69,7 +69,8 @@
    $app->add(new TokenAuthentication([
         'path' => '/',
         'passthrough' => ['/ping', '/token'], //'/ping', /* or ['/api/auth', '/api/test'] */
-        'authenticator' => $authenticator
+        'authenticator' => $authenticator,
+        'secure' => false
    ]));
 
    /**
