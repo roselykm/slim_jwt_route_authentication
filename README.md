@@ -66,7 +66,7 @@ Setup your ajax and sessionStorage as the following for token header setting and
           401: function(){
             //clear session data, jwt token etc
             localStorage.clear();     
-            // Redirec the to the login page here            
+            // Redirec to login page here            
           }
        }
     });
@@ -74,7 +74,7 @@ Setup your ajax and sessionStorage as the following for token header setting and
     //access secured route using the token already in the header	
     $.ajax({
        type: "GET",
-       url: 'localhost/myapp/api/testtoken',
+       url: 'localhost/myapp/api/restrict',
        dataType: "json",
        success: function(data){
          //do something here with the json data from the API
