@@ -150,7 +150,7 @@ GET https://afternoon-forest-18431.herokuapp.com/ping
 GET https://afternoon-forest-18431.herokuapp.com/token
 
 ## Test the authenticated route, need valid JWT token. Use Postman or curl
-`curl -X GET -H "Authorization: Bearer a_long_token_appears_here" "https://afternoon-forest-18431.herokuapp.com/restrict"`
+`curl -X GET -H "Authorization: Bearer a_long_jwt_token_appears_here" "https://afternoon-forest-18431.herokuapp.com/restrict"`
 
 ## Refresh token - route authenticated, need valid JWT token. Use Postman or curl
-`curl -X PATCH -H "Authorization: Bearer a_long_token_appears_here" "https://afternoon-forest-18431.herokuapp.com/auth/refresh"`
+`curl -X PATCH -H "Authorization: Bearer a_long_jwt_token_appears_here" "https://afternoon-forest-18431.herokuapp.com/auth/refresh"`
