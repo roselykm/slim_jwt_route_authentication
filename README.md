@@ -140,3 +140,17 @@ Setup your ajax and sessionStorage as the following for token header setting and
        error: function() {
        }
     });
+
+## Demo, uploaded to `heroku`
+
+# Pinging the server
+GET https://afternoon-forest-18431.herokuapp.com/ping
+
+# Getting jwt token for testing
+GET https://afternoon-forest-18431.herokuapp.com/token
+
+# Test the authenticated route. Using Postman or curl
+curl -X GET -H "Authorization: Bearer a_long_token_appears_here" "https://afternoon-forest-18431.herokuapp.com/restrict"
+
+# Refresh token - route authentication
+curl -X PATCH -H "Authorization: Bearer a_long_token_appears_here" "https://afternoon-forest-18431.herokuapp.com/auth/refresh"
