@@ -47,11 +47,14 @@ You can configure which routes require/not require authentication, setting it on
        
 ## Sample route in the `__DIR__\index.php` file
 
+       //publc route
        $app->get('/ping', function($request, $response){
           $output = ['msg' => 'It is a public area'];
           return $response->withJson($output, 200, JSON_PRETTY_PRINT);
        });
 
+       //public route for API testing
+       //get token and use the JWT token in POSTMAN or using curl
        $app->get('/token', function($request, $response){
           //create JWT token
           $date = date_create();
@@ -70,6 +73,8 @@ You can configure which routes require/not require authentication, setting it on
                           ->withHeader('Content-type', 'application/json');
        });
 
+       //protected route for refreshing nearly expired token
+       //to refresh token, valid token is required
        $app->patch('/auth/refresh', function($request, $response){
           //create new JWT token
           $date = date_create();
@@ -91,7 +96,6 @@ You can configure which routes require/not require authentication, setting it on
 
        /**
          * Restrict route example
-         * Our token is "usertokensecret"
          */
        $app->get('/restrict', function($request, $response){
           $output = ['msg' => 'It\'s a restrict area. Token authentication works!'];
