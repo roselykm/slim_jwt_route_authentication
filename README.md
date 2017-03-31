@@ -33,3 +33,13 @@ Put your JWT secret key in the .env file. In case you are using Auth0, copy your
              throw new \app\UnauthorizedException('Invalid Token');
           }
        };
+       
+### Path (protected route) Passthrough (public route
+
+You can configure which routes require/not require authentication, setting it on `path` and `passthrough` option. In case you clone the files into api folder, using the following configuration, all route using `api/....` are protected except `api/ping` and `api/token`
+
+       $app->add(new TokenAuthentication([
+            'path' => '/',
+            'passthrough' => ['/ping', '/token'], 
+            'authenticator' => $authenticator
+       ]));
