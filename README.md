@@ -26,6 +26,7 @@ Put your JWT secret key in the .env file. In case you are using Auth0, copy your
           */
           $token = $tokenAuth->findToken($request);
 
+          //validate/decode JWT token using the secret key
           try {
              $tokenDecoded = JWT::decode($token, getenv('JWT_SECRET'), array('HS256'));
           }
