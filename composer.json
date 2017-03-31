@@ -1,0 +1,15 @@
+{
+    "require": {
+        "slim/slim": "^3.7.0",
+        "illuminate/database": "^5.4",
+        "firebase/php-jwt": "^4.0.0",
+        "fzaninotto/faker": "^1.6",
+        "vlucas/phpdotenv": "^2.4",
+        "dyorg/slim-token-authentication": "^0.2.0"
+    },
+    "autoload": {
+        "classmap": [
+          "app"
+        ]
+    }
+}
