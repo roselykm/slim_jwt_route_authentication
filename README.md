@@ -44,6 +44,59 @@ You can configure which routes require/not require authentication, setting it on
             'passthrough' => ['/ping', '/token'], 
             'authenticator' => $authenticator
        ]));
+       
+## Sample route in the `__DIR__\index.php` file
+
+       $app->get('/ping', function($request, $response){
+          $output = ['msg' => 'It is a public area'];
+          return $response->withJson($output, 200, JSON_PRETTY_PRINT);
+       });
+
+       $app->get('/token', function($request, $response){
+          //create JWT token
+          $date = date_create();
+          $jwtIAT = date_timestamp_get($date);
+          $jwtExp = $jwtIAT + (20 * 60); //expire after 20 minutes
+
+          $jwtToken = array(
+             "iss" => "rbk.net", //client key
+             "iat" => $jwtIAT, //issued at time
+             "exp" => $jwtExp, //expire
+          );
+          $token = JWT::encode($jwtToken, getenv('JWT_SECRET'));
+
+          $data = array('token' => $token);
+          return $response->withJson($data, 200)
+                          ->withHeader('Content-type', 'application/json');
+       });
+
+       $app->patch('/auth/refresh', function($request, $response){
+          //create new JWT token
+          $date = date_create();
+          $jwtIAT = date_timestamp_get($date);
+          $jwtExp = $jwtIAT + (20 * 60); //expire after 20 minutes
+
+          $jwtToken = array(
+             "iss" => "rbk.net", //client key
+             "iat" => $jwtIAT, //issued at time
+             "exp" => $jwtExp, //expire
+          );
+          $token = JWT::encode($jwtToken, getenv('JWT_SECRET'));
+
+          $data = array('token' => $token);
+
+          return $response->withJson($data, 200)
+                          ->withHeader('Content-type', 'application/json');
+       });
+
+       /**
+         * Restrict route example
+         * Our token is "usertokensecret"
+         */
+       $app->get('/restrict', function($request, $response){
+          $output = ['msg' => 'It\'s a restrict area. Token authentication works!'];
+          return $response->withJson($output, 200, JSON_PRETTY_PRINT);
+       });
 
 ## Frontend application
 
